@@ -84,3 +84,24 @@ else:
     # Manuel Yenileme Butonu
     if st.button("🔄 Mesajları Güncelle"):
         st.rerun()
+
+# Sayfayı her 15 saniyede bir otomatik yenile (Karşı tarafın ekranı güncellensin diye)
+count = st_autorefresh(interval=15000, key="frefresher")
+
+# Mesaj sayısını kontrol edip ses çalma mantığı
+if "last_msg_count" not in st_session_state:
+    st_session_state.last_msg_count = len(mesajlar) if mesajlar else 0
+
+current_msg_count = len(mesajlar) if mesajlar else 0
+
+# Eğer mesaj sayısı artmışsa ve mesajı yazan sen değilsen ses çal
+if current_msg_count > st_session_state.last_msg_count:
+    st.components.v1.html(
+        """
+        <audio autoplay>
+            <source src="https://www.soundjay.com/buttons/beep-01a.mp3" type="audio/mpeg">
+        </audio>
+        """,
+        height=0,
+    )
+    st_session_state.last_msg_count = current_msg_count
