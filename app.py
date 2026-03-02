@@ -5,7 +5,8 @@ from datetime import datetime
 
 # Firebase Realtime Database URL
 # Sonuna /.json eklemeyi unutma
-URL = "https://ailechat-166f6-default-rtdb.firebaseio.com/.json"
+# Sonuna mutlaka /.json eklemelisin!
+URL = "https://ailechat-166f6-default-rtdb.europe-west1.firebasedatabase.app/.json"
 
 st.set_page_config(page_title="Bizim Aile Chat", page_icon="💬", layout="centered")
 
@@ -69,4 +70,5 @@ else:
 
     # Manuel Yenileme Butonu
     if st.button("🔄 Mesajları Güncelle"):
+
         st.rerun()
